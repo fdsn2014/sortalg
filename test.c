@@ -1,10 +1,27 @@
 #include<stdio.h>
 #include<stdlib.h>
+//打印数组每行10个
+void (int str[], int len){
 
+    int i = 0;
+    int j = 0;
+    for(;i < len ;i+10){
+        if(i+9 < len){
+            printf("%d<->%d:",i,len);    
+        }
+        else {
+            printf("%d<->%d:",i,i+9);    
+        }
+        for(j=0;(j<10)||(j<len);j++)
+            printf("%6d",str[j]);
+        printf("\n");          
+
+    } 
+}
 void initstr(int* str,int len){
     int i = 0;
     while(i < len){
-        str[i] = rand()%100;
+        str[i] = rand()%1000;
         i++;    
     } 
     return;   
@@ -39,24 +56,24 @@ void bubblesort(int *str,int len){
         }
     }
 }
-int main(void){
+int main(int argc,char *argv[]){
+    
     int len = 10;
     int str[len];
     initstr(str,len);
 
-    printf("init rand str is :\n");
-    int i = 0;
-    for(;i < len ;i++){
-        printf("%8d",str[i]);
+    if( argc != 1){
+        len = argv[0];
+        printf("str len is set %d\n",len);
     }
-    printf("\n"); 
+    printf("init rand str is :\n");
+    printf_str(str,len);
+
     
     bubblesort(str,len);
     
     printf("sort str is :\n");    
-    for(i=0;i < len ;i++){
-        printf("%8d",str[i]);
-    }
-    printf("\n");      
+    print_str(str,len);
+     
      return 0; 
 }
