@@ -126,8 +126,8 @@ void test_swap(int arr[],int len){
     //√∞≈›≈≈–Ú
     bubblesort(arr,len); 
     gettimeofday(&end,NULL);
-    diff = 1000000 * (end.tv_sec-start.tv_sec)+ end.tv_usec-start.tv_usec; 
-//    printf("bubblesort time is %ld\n",diff);
+    diff = 1000000 * (end.tv_sec-start.tv_sec)+ end.tv_usec-start.tv_usec;  
+    printf("bubblesort time is %ld\n",diff);
     printf("bubblesort time is %ld\n ",diff);  
     printf("sort arr is :\n");    
     print_arr(arr,len);
@@ -137,10 +137,9 @@ void test_swap(int arr[],int len){
     quicksort(arr,0,len-1);
     gettimeofday(&end,NULL);
     diff = 1000000 * (end.tv_sec-start.tv_sec)+ end.tv_usec-start.tv_usec; 
-    printf("quicksort time is %ld\n",diff);
     printf("quicksort time is %ld\n",diff);      
     printf("quicksort arr is :\n");    
-//    print_arr(arr,len);        
+    print_arr(arr,len);        
 }
 
 int main(int argc,char *argv[]){
@@ -159,10 +158,6 @@ int main(int argc,char *argv[]){
     print_arr(arr,len);
     
     test_swap(arr,len);
- 
-
-
-  
      
     return 0; 
 }
