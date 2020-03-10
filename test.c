@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <sys/time.h>
+//靠靠
 //打印数组每行10个
 void print_arr(int arr[], int len){
     int i = 0;
@@ -116,36 +117,53 @@ void quicksort(int *arr,int left,int right){
 返回值：无
 */
 void SelectionSort(int arr[],int len){
-;
+    int i=0,j=0,k;
+    int temp;
+    //选择的位置
+    for(i=0;i<len-1;i++){
+        k = i;//待选择比较的位置
+        //从乱序中找到最小的位置
+        for(j=i+1;j<len;j++){
+            if(arr[k]>arr[j]){
+                k = j;
+            }
+        }
+        //最小的位置不是待选择的位置，则交换
+        if(k != i){
+            temp = arr[i];
+            arr[i] = arr[k];
+            arr[k] = temp;    
+        }
+    }
 }
 void test_swap(int arr[],int len){
     struct  timeval start,end;
-    unsigned  long diff;
-    
+    unsigned  long diff;    
     gettimeofday(&start,NULL);
     //冒泡排序
     bubblesort(arr,len); 
     gettimeofday(&end,NULL);
     diff = 1000000 * (end.tv_sec-start.tv_sec)+ end.tv_usec-start.tv_usec; 
-//    printf("bubblesort time is %ld\n",diff);
+    printf("bubblesort time is %ld\n",diff);
     printf("bubblesort time is %ld\n ",diff);  
     printf("sort arr is :\n");    
-    print_arr(arr,len);
-        
+    print_arr(arr,len);        
      //快速排序
     gettimeofday(&start,NULL);
     quicksort(arr,0,len-1);
     gettimeofday(&end,NULL);
     diff = 1000000 * (end.tv_sec-start.tv_sec)+ end.tv_usec-start.tv_usec; 
-    printf("quicksort time is %ld\n",diff);
-    printf("quicksort time is %ld\n",diff);      
+    printf("quicksort time is %ld\n",diff);  
     printf("quicksort arr is :\n");    
-//    print_arr(arr,len);        
+    print_arr(arr,len); 
+    //选择排序           
 }
 
-int main(int argc,char *argv[]){
+int main(int argc,char *argv[]){    
     int len = 10;
-    int arr[100000];
+    int arr[100000]; 
+    struct  timeval start,end;
+    unsigned  long diff; 
     if( argc == 2){
         len = atoi(argv[1]);
         printf("arr len is set %d\n",len);
@@ -154,7 +172,18 @@ int main(int argc,char *argv[]){
     initarr(arr,len);   
     printf("init rand arr is :\n");
     print_arr(arr,len);
-    
-    test_swap(arr,len); 
+//    test_swap(arr,len);
+ 
+      //选择排序
+    gettimeofday(&start,NULL);
+    SelectionSort(arr,len);
+    gettimeofday(&end,NULL);
+    diff = 1000000 * (end.tv_sec-start.tv_sec)+ end.tv_usec-start.tv_usec; 
+    printf("SelectionSort time is %ld\n",diff);  
+    printf("SelectionSort arr is :\n");    
+    print_arr(arr,len);  
+
+  
+     
     return 0; 
 }
